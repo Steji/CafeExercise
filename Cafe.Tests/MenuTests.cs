@@ -1,14 +1,18 @@
 using Xunit;
+using Moq;
+using System.Collections.Generic;
 
 namespace Cafe.Tests
 {
     public class MenuTests
     {
-        private readonly Menu _menu;
+        private readonly Mock<Menu> _menu;
 
         public MenuTests()
         {
-            _menu = new Menu();
+            _menu = new Mock<Menu>();
+
+            _menu.CallBase = true;
         }
 
         [Fact]
@@ -21,9 +25,26 @@ namespace Cafe.Tests
                 Price = 5.50m
             };
 
-            _menu.Add(item);
+            _menu.Object.Add(item);
 
-            Assert.Contains(item, _menu.Items);
+            Assert.Contains(item, _menu.Object.Items);
+        }
+
+        [Fact]
+        public void Menu_Selects_Item()
+        {
+            var item = new Item
+            {
+                Name = "Vindaloo",
+                Temperature = Temperature.Hot,
+                Price = 5.50m
+            };
+
+            _menu.SetupGet(m => m.Items).Returns(new List<Item> { item });
+
+            _menu.Object.Select("Vindaloo");
+
+            Assert.Contains(item, _menu.Object.Selection);
         }
     }
 }
