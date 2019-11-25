@@ -6,11 +6,11 @@ namespace Cafe.Tests
 {
     public class MenuTests
     {
-        private readonly Mock<Menu> _menu;
+        private readonly Mock<IMenu> _menu;
 
         public MenuTests()
         {
-            _menu = new Mock<Menu>();
+            _menu = new Mock<Menu>().As<IMenu>();
 
             _menu.CallBase = true;
         }
