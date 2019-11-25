@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cafe;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Console
 {
@@ -6,7 +7,22 @@ namespace Console
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var services = ConfigureServices();
+            var serviceProvider = services.BuildServiceProvider();
+
+            var menu = serviceProvider.GetService<IMenu>();
+
+            //menu.add
+            //menu.select
+            //menu.total
+        }
+
+        private static IServiceCollection ConfigureServices()
+        {
+            IServiceCollection services = new ServiceCollection();
+            services.AddTransient<IMenu, Menu>();
+
+            return services;
         }
     }
 }
