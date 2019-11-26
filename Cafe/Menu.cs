@@ -30,7 +30,9 @@ namespace Cafe
 
         public decimal CalculateTotal()
         {
-            throw new NotImplementedException();
+            var total = Selection.Sum(s => s.Price);
+
+            return total;
         }
     }
 }
