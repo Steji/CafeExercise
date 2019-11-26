@@ -32,12 +32,19 @@ namespace Cafe
         {
             var total = Selection.Sum(s => s.Price);
 
+            total += CalculateServiceCharge(total);
+
             return total;
         }
 
-        private decimal CalculateServiceCharge()
+        private decimal CalculateServiceCharge(decimal total)
         {
-            return 0;
+            var serviceCharge = 0.0m;
+
+            if (Selection.Any(s => s.Sustenance == Sustenance.Food))
+                serviceCharge = total * 0.1m;
+
+            return Math.Round(serviceCharge, 2);
         }
     }
 }
