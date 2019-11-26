@@ -13,10 +13,10 @@ namespace Console
 
             var menu = serviceProvider.GetService<IMenu>();
 
-            menu.Add(new Item { Name = "Cola", Temperature = Temperature.Cold, Price = 0.5m });
-            menu.Add(new Item { Name = "Coffee", Temperature = Temperature.Hot, Price = 1.0m });
-            menu.Add(new Item { Name = "Cheese Sandwich", Temperature = Temperature.Cold, Price = 2.0m });
-            menu.Add(new Item { Name = "Steak Sandwich", Temperature = Temperature.Hot, Price = 4.50m });
+            menu.Add(new Item("Cola", Temperature.Cold, 0.5m, Sustenance.Drink));
+            menu.Add(new Item("Coffee", Temperature.Hot, 1.0m, Sustenance.Drink));
+            menu.Add(new Item("Cheese Sandwich", Temperature.Cold, 2.0m, Sustenance.Food));
+            menu.Add(new Item("Steak Sandwich", Temperature.Hot, 4.50m, Sustenance.Food));
 
             System.Console.WriteLine("Please enter order separated with commas (e.g. Cola, Cheese Sandwich) ");
             var input = System.Console.ReadLine();

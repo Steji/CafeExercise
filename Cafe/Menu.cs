@@ -34,5 +34,10 @@ namespace Cafe
 
             return total;
         }
+
+        private decimal CalculateServiceCharge()
+        {
+            return 0;
+        }
     }
 }
