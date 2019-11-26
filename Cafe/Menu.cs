@@ -46,6 +46,8 @@ namespace Cafe
             else if (Selection.Any(s => s.Sustenance == Sustenance.Food))
                 serviceCharge = total * 0.1m;
 
+            serviceCharge = serviceCharge <= 20m ? serviceCharge : 20m;
+
             return Math.Round(serviceCharge, 2);
         }
     }
