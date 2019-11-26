@@ -46,5 +46,36 @@ namespace Cafe.Tests
 
             Assert.Contains(item, _menu.Object.Selection);
         }
+
+        [Fact]
+        public void Menu_Calculates_Items_Total()
+        {
+            var vindaloo = new Item
+            {
+                Name = "Vindaloo",
+                Temperature = Temperature.Hot,
+                Price = 5.50m
+            };
+
+            var bhuna = new Item
+            {
+                Name = "Bhuna",
+                Temperature = Temperature.Hot,
+                Price = 5.80m
+            };
+
+            var mangoChutney = new Item
+            {
+                Name = "Mango Chutney",
+                Temperature = Temperature.Cold,
+                Price = 0.90m
+            };
+
+            _menu.SetupGet(m => m.Selection).Returns(new List<Item> { vindaloo, bhuna, mangoChutney });
+
+            var result = _menu.Object.CalculateTotal();
+
+            Assert.Equal(12.20m, result);
+        }
     }
 }

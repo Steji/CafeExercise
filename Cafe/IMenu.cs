@@ -10,5 +10,7 @@ namespace Cafe
         void Add(Item item);
 
         void Select(string item);
+
+        decimal CalculateTotal();
     }
 }

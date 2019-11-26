@@ -27,5 +27,10 @@ namespace Cafe
             if (itemToAdd != null)
                 Selection.Add(itemToAdd);
         }
+
+        public decimal CalculateTotal()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
